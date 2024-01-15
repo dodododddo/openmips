@@ -1,0 +1,13 @@
+*.cache
+*.hw
+*.xpr
+*.Xil
+*.wdb
+*.bat
+*.log
+*.dir
+*.jou
+*.tcl
+*.prj
+*.ini
+*.pb
