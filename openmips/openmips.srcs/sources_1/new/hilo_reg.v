@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2024/01/14 12:22:55
+// Create Date: 2024/01/24 10:03:46
 // Design Name: 
-// Module Name: mem
+// Module Name: hilo_reg
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,47 +18,31 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-`include "defines.v"
 
-module mem(
+
+module hilo_reg(
+    input clk,
     input rst,
-
-    input [`RegAddrBus] wd_i,
-    input wreg_i,
-    input [`RegBus] wdata_i,
-
+    //写端口
+    input we,
     input [`RegBus] hi_i,
     input [`RegBus] lo_i,
-    input whilo_i,
-    
-    output reg[`RegAddrBus] wd_o,
-    output reg wreg_o,
-    output reg[`RegBus] wdata_o,
 
+    //读端口
     output reg [`RegBus] hi_o,
-    output reg [`RegBus] lo_o,
-    output reg whilo_o
-    );  
-
-    always @(*) begin
+    output reg [`RegBus] lo_o
+);
+    
+    // 写
+    always @(posedge clk) begin
         if(rst == `RstEnable) begin
-            wd_o <= `NOPRegAddr;
-            wreg_o <= `WriteDisable;
-            wdata_o <= `ZeroWord;
-
             hi_o <= `ZeroWord;
             lo_o <= `ZeroWord;
-            whilo_o <= `WriteDisable;
         end
-
-        else begin
-            wd_o <= wd_i;
-            wreg_o <= wreg_i;
-            wdata_o <= wdata_i;
-
+        else if(we == `WriteEnable) begin
             hi_o <= hi_i;
             lo_o <= lo_i;
-            whilo_o <= whilo_i;
         end
     end
+
 endmodule
