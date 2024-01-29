@@ -302,3 +302,5 @@
 `define CP0_REG_EPC    5'b01110          //可读写
 `define CP0_REG_PrId    5'b01111         //只读
 `define CP0_REG_CONFIG    5'b10000       //只读
+
+`define OverSum 1'b1
