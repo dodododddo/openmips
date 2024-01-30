@@ -31,6 +31,7 @@
 `define AluSelBus 2:0
 `define InstValid 1'b0
 `define InstInvalid 1'b1
+`define CtrlBus 5:0
 `define Stop 1'b1
 `define NoStop 1'b0
 `define InDelaySlot 1'b1
@@ -304,3 +305,4 @@
 `define CP0_REG_CONFIG    5'b10000       //只读
 
 `define OverSum 1'b1
+`define CntBus 1:0

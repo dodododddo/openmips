@@ -23,7 +23,7 @@
 module pc_reg(
     input clk,
     input rst,
-    
+    input [`CtrlBus] stall,
     output reg [`InstAddrBus] pc,
     output reg ce
 );
@@ -45,8 +45,12 @@ module pc_reg(
             pc <= `ZeroWord;
         end
         
-        else begin
+        else if(stall[0] == `NoStop) begin
             pc <= pc + 4'h4;
+        end
+
+        else begin
+            pc <= pc;
         end
     end
 endmodule
